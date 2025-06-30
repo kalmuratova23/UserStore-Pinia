@@ -1,13 +1,12 @@
 <script setup>
 import { ref } from 'vue'
-import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 
 const user = useUserStore()
 user.loadFromStorage()
 const inputName = ref('')
 const router = useRouter()
- 
 
 const handleLogin = () => {
   if (inputName.value.trim()) {
@@ -16,7 +15,10 @@ const handleLogin = () => {
   }
 }
 
-
+const handleLogout = () => {
+  user.logout()
+  router.push('/')
+}
 </script>
 
 <template>
@@ -95,5 +97,3 @@ button:hover {
   font-weight: bold;
 }
 </style>
-
-
